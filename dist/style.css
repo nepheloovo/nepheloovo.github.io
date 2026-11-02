@@ -316,12 +316,13 @@ button { font: inherit; color: inherit; }
 .slide-meta { display: flex; justify-content: space-between; align-items: center; font-size: 10.5px; color: var(--muted); margin-bottom: 8px; }
 .tag { color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 6px; }
 .slide h3, .skill-card h3, .article h3 { font-size: 20px; font-weight: 800; letter-spacing: -.01em; line-height: 1.35; margin-bottom: 8px; }
-.slide-body > p:not(.slide-meta):not(.chips):not(.links) { font-size: 14px; color: var(--ink-2); }
+.slide-body > p:not(.slide-meta):not(.chips):not(.links):not(.credit) { font-size: 14px; color: var(--ink-2); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; font-size: 11px; }
 .chips span { padding: 3px 9px; border-radius: 6px; background: #f1f4f0; border: 1px solid var(--line); color: var(--ink-2); }
 .links { display: flex; gap: 18px; margin-top: 16px; font-size: 13.5px; font-weight: 600; }
 .links a { color: var(--accent); border-bottom: 1px solid transparent; }
 .links a:hover { border-color: currentColor; }
+.credit { margin-top: 10px; font-size: 11.5px; color: var(--muted); }
 .carousel-ctrl { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
 .ctrl-r { display: flex; align-items: center; gap: 14px; }
 .arrow {
