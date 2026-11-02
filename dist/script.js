@@ -1,30 +1,126 @@
-const thoughts = {
-  discover: {title:'先把问题问对。', body:'在讨论模型和功能之前，先回到具体的人与场景：谁遇到了什么困难？他们今天怎样解决？这件事，真的需要 AI 吗？', note:'从真实需求出发，而不是从技术名词出发。', symbol:'?'},
-  validate: {title:'把假设，放进真实场景。', body:'用一个足够小的原型，验证最重要的假设。让使用者亲手试一试，观察他们在哪一步停下来，再决定下一步值得投入什么。', note:'一个可验证的小步，胜过一份完美的大计划。', symbol:'↗'},
-  deliver: {title:'让有用，也变得好用。', body:'好的体验，藏在每一个具体的反馈里：等待时是否有预期，出错时是否有退路，结果是否容易理解。让 AI 能力真正融入日常使用。', note:'交付不是终点，真实的使用才是新的开始。', symbol:'+'}
-};
-const tabs = [...document.querySelectorAll('[role="tab"]')];
-const panel = document.querySelector('#thought-panel');
-function selectTab(tab, focus = false) {
-  tabs.forEach(item => { const active = item === tab; item.setAttribute('aria-selected', String(active)); item.tabIndex = active ? 0 : -1; });
-  const thought = thoughts[tab.dataset.step];
-  panel.querySelector('h3').textContent = thought.title;
-  panel.querySelector('p').textContent = thought.body;
-  panel.querySelector('.thought-note').textContent = thought.note;
-  panel.querySelector('.thought-symbol').textContent = thought.symbol;
-  panel.setAttribute('aria-labelledby', tab.id);
-  if (focus) tab.focus();
-}
-tabs.forEach((tab,index)=>{
-  tab.addEventListener('click',()=>selectTab(tab));
-  tab.addEventListener('keydown',event=>{
-    let next;
-    if(event.key==='ArrowRight'||event.key==='ArrowDown') next=(index+1)%tabs.length;
-    if(event.key==='ArrowLeft'||event.key==='ArrowUp') next=(index+tabs.length-1)%tabs.length;
-    if(event.key==='Home') next=0;
-    if(event.key==='End') next=tabs.length-1;
-    if(next!==undefined){event.preventDefault();selectTab(tabs[next],true);}
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+  const store = {
+    get(k) { try { return sessionStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { sessionStorage.setItem(k, v); } catch { /* 隐私模式下忽略 */ } },
+  };
+
+  $('#year').textContent = new Date().getFullYear();
+
+  /* ---------- 开机页：每个会话只出现一次，带锚点的直达链接跳过 ---------- */
+  const boot = $('#boot');
+  const enter = () => {
+    if (boot.classList.contains('is-gone')) return;
+    boot.classList.add('is-gone');
+    boot.setAttribute('aria-hidden', 'true');
+    store.set('xiaodu-booted', '1');
+    document.removeEventListener('keydown', onBootKey);
+    setTimeout(() => { boot.hidden = true; main.focus({ preventScroll: true }); }, 500);
+  };
+  const onBootKey = (e) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); enter(); }
+  };
+  if (store.get('xiaodu-booted') || location.hash) {
+    boot.hidden = true;
+  } else {
+    document.addEventListener('keydown', onBootKey);
+    boot.addEventListener('click', enter);
+    $('#bootEnter').focus();
+  }
+
+  /* ---------- 面板切换（hash 路由） ---------- */
+  const panels = $$('.panel');
+  const navLinks = $$('[data-nav]');
+  const main = $('#main');
+  const ids = panels.map((p) => p.id);
+
+  const show = (id, focus) => {
+    if (!ids.includes(id)) id = 'about';
+    panels.forEach((p) => p.classList.toggle('is-active', p.id === id));
+    navLinks.forEach((a) => {
+      const on = a.dataset.nav === id;
+      a.classList.toggle('is-active', on);
+      if (on) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+      else a.removeAttribute('aria-current');
+    });
+    main.scrollTop = 0;
+    if (focus) $('h2', $('#' + id))?.focus?.();
+    const c = $('#' + id + ' [data-carousel]');
+    if (c) c.refresh?.();
+  };
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    if (!ids.includes(id)) return;
+    e.preventDefault();
+    if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+    show(id);
   });
-});
-document.querySelectorAll('a[href="#site-story"]').forEach(link=>link.addEventListener('click',()=>{document.querySelector('#site-story').open=true;}));
-document.querySelector('#year').textContent = new Date().getFullYear();
+  window.addEventListener('popstate', () => show(location.hash.slice(1)));
+  show(location.hash.slice(1));
+
+  /* ---------- 轮播 ---------- */
+  $$('[data-carousel]').forEach((root) => {
+    const track = $('.track', root);
+    const slides = $$('.slide', root);
+    const prev = $('[data-prev]', root);
+    const next = $('[data-next]', root);
+    const count = $('[data-count]', root);
+    const bar = $('[data-progress]', root);
+    const pad = (n) => String(n).padStart(2, '0');
+    let current = 0;
+
+    const setCurrent = (i) => {
+      current = i;
+      slides.forEach((s, k) => s.classList.toggle('is-current', k === i));
+      count.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
+      bar.style.width = `${((i + 1) / slides.length) * 100}%`;
+      prev.disabled = i === 0;
+      next.disabled = i === slides.length - 1;
+    };
+    const goTo = (i) => {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      const s = slides[i];
+      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
+      setCurrent(i);
+    };
+    const nearest = () => {
+      const mid = track.scrollLeft + track.clientWidth / 2;
+      let best = 0, dist = Infinity;
+      slides.forEach((s, k) => {
+        const d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid);
+        if (d < dist) { dist = d; best = k; }
+      });
+      return best;
+    };
+
+    let raf;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => { const n = nearest(); if (n !== current) setCurrent(n); });
+    }, { passive: true });
+    prev.addEventListener('click', () => goTo(current - 1));
+    next.addEventListener('click', () => goTo(current + 1));
+    slides.forEach((s, k) => s.addEventListener('click', (e) => {
+      if (k !== current && !e.target.closest('a')) { e.preventDefault(); goTo(k); }
+    }));
+
+    document.addEventListener('keydown', (e) => {
+      if (!root.closest('.panel').classList.contains('is-active') || !boot.hidden) return;
+      if (e.target.matches('input, textarea')) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    });
+
+    root.refresh = () => requestAnimationFrame(() => {
+      const s = slides[current];
+      track.scrollLeft = s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
+      setCurrent(current);
+    });
+    root.refresh();
+  });
+})();

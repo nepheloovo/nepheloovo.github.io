@@ -16,12 +16,20 @@ python3 -m http.server 4173 --directory dist
 
 ## 修改内容
 
-- `dist/index.html`：个人介绍、作品、联系方式。
-- `dist/style.css`：样式和响应式布局。
-- `dist/script.js`：思考标签页、作品详情、版权年份。
-- `dist/favicon.svg`：网站图标。
+- `dist/index.html`：全部内容。五个面板：关于我、个人项目、技能与工具、文章、联系我。
+- `dist/style.css`：样式、配色（`:root` 变量）和手机适配。
+- `dist/script.js`：开机页、侧栏切换、项目轮播。
+- `dist/assets/covers/`：项目与文章封面。
 
-真实作品和联系方式待补充；除名字与职业外，介绍与思考内容为首版建议文案。
+**新增文章**：在 `#writing` 面板里复制一个 `<a class="article">` 块，换链接、标题、日期和封面图；同时更新状态栏和开机页里的文章数量。
+
+**新增中文标题字**：大标题用的 `display-zh.woff2` 只包含本站用到的字。加了新标题后，用下面的命令重新生成（在仓库根目录执行）：
+
+```sh
+TEXT=$(python3 -c "import urllib.parse;s=open('dist/index.html',encoding='utf-8').read();print(urllib.parse.quote(''.join(sorted(set(c for c in s if ord(c)>0x2E80)))))")
+URL=$(curl -s -A "Mozilla/5.0 Chrome/130" "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@900&text=$TEXT" | grep -oE 'https://[^)]+' | head -1)
+curl -s -o dist/assets/display-zh.woff2 "$URL"
+```
 
 ## 发布更新
 
