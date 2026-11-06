@@ -390,6 +390,8 @@ button { font: inherit; color: inherit; }
 .article-body em { font-style: normal; font-size: 11px; color: var(--accent); margin-top: auto; padding-top: 12px; }
 .article-feature .article-body em { margin-top: 18px; }
 .article:not(.article-feature) h3 { font-size: 17px; }
+.article-wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+.article-wide .cover { aspect-ratio: auto; min-height: 170px; border-bottom: 0; border-right: 1px solid var(--line); }
 
 /* ============ Contact ============ */
 .cta {
@@ -450,7 +452,8 @@ button { font: inherit; color: inherit; }
   .caps { grid-template-columns: 1fr; }
   .stack > div { grid-template-columns: 1fr; gap: 8px; }
   .articles { grid-template-columns: 1fr; }
-  .article-feature { display: flex; }
+  .article-feature, .article-wide { display: flex; }
+  .article-wide .cover { aspect-ratio: 2.35 / 1; min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .article-feature .cover { aspect-ratio: 2.35 / 1; min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .article-feature h3 { font-size: 22px; }
   .contact-rows span { width: 90px; }

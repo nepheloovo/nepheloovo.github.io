@@ -1,0 +1,71 @@
+name: Add WeChat article
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '公众号文章链接（https://mp.weixin.qq.com/s/...）'
+        required: true
+        type: string
+      tag:
+        description: '标签（可空，例如：AI 热点 / AI 行业 / 产品方法 / 入门指南）'
+        required: false
+        type: string
+      summary:
+        description: '一句话简介（可空，默认用文章摘要）'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Fetch article and update site
+        env:
+          URL: ${{ inputs.url }}
+          TAG: ${{ inputs.tag }}
+          SUMMARY: ${{ inputs.summary }}
+        run: python3 scripts/articles.py add "$URL" --tag "$TAG" --summary "$SUMMARY"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist
+          if git diff --cached --quiet; then
+            echo "没有变化"
+          else
+            git commit -m "Add article: $(python3 -c "import json;print(json.load(open('dist/articles.json'))[0]['title'])")"
+            git push
+          fi
+
+  deploy:
+    needs: add
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

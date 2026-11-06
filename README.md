@@ -21,7 +21,16 @@ python3 -m http.server 4173 --directory dist
 - `dist/script.js`：开机页、侧栏切换、项目轮播。
 - `dist/assets/covers/`：项目与文章封面。
 
-**新增文章**：在 `#writing` 面板里复制一个 `<a class="article">` 块，换链接、标题、日期和封面图；同时更新状态栏和开机页里的文章数量。
+**新增文章**（不用改代码）：打开仓库 **Actions → Add WeChat article → Run workflow**，粘贴公众号文章链接，标签和一句话简介可空，点 **Run workflow**。它会抓取标题、发布日期和封面，写入 `dist/articles.json`，按日期从新到旧重新生成 `#writing` 文章区和文章数量，然后自动部署。GitHub 主页 README（`nepheloovo/nepheloovo`）每小时从 `https://nepheloovo.github.io/articles.json` 同步一次文章表格，也可以在那个仓库的 Actions 里手动运行 **Sync articles from website** 立刻同步。
+
+本地也能做同样的事：
+
+```sh
+python3 scripts/articles.py add "https://mp.weixin.qq.com/s/..." --tag "AI 热点"
+python3 scripts/articles.py render   # 手动改了 articles.json 后重新生成
+```
+
+文章区在 `index.html` 的 `<!-- articles:start -->` 和 `<!-- articles:end -->` 之间，由脚本生成，不要手改。
 
 **新增中文标题字**：大标题用的 `display-zh.woff2` 只包含本站用到的字。加了新标题后，用下面的命令重新生成（在仓库根目录执行）：
 

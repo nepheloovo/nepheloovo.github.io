@@ -1,0 +1,47 @@
+[
+  {
+    "id": "2247483730_1",
+    "url": "https://mp.weixin.qq.com/s/siRmfMioUSMiCNVn96RZmA",
+    "title": "GitHub 小白指南：认识这 8 个词，就能看懂一个项目",
+    "date": "2026-11-03",
+    "summary": "不会写代码，也该看懂 GitHub：一个项目页面怎么看、八个必要功能是干什么的",
+    "tag": "入门指南",
+    "cover": "assets/covers/article-github.jpg"
+  },
+  {
+    "id": "2247483725_1",
+    "url": "https://mp.weixin.qq.com/s/mkJX2PjDeKOJjKcClSZCsA",
+    "title": "Spec：写给一个不会提问的同事",
+    "date": "2026-11-02",
+    "summary": "Spec 火起来，是因为需求文档多了一个只会照做的读者",
+    "tag": "产品方法",
+    "cover": "assets/covers/article-spec.jpg"
+  },
+  {
+    "id": "2247483718_1",
+    "url": "https://mp.weixin.qq.com/s/ina4Snx05fImKLAQpukz3A",
+    "title": "FDE：企业 AI 的装修工",
+    "date": "2026-10-29",
+    "summary": "FDE 火了，但这可能不是 AI 行业的好消息",
+    "tag": "AI 行业",
+    "cover": "assets/covers/article-fde.jpg"
+  },
+  {
+    "id": "2247483711_1",
+    "url": "https://mp.weixin.qq.com/s/JTnNsdvWjVnkz5e3UsQYoQ",
+    "title": "传统 PRD 到 AI PRD 到基因突变",
+    "date": "2026-10-26",
+    "summary": "从传统 PRD 到 AI PRD，产品文档正在发生什么变化",
+    "tag": "产品方法",
+    "cover": "assets/covers/article-prd.jpg"
+  },
+  {
+    "id": "2247483696_1",
+    "url": "https://mp.weixin.qq.com/s/ydta9O89QAXyggxeBNjlhA",
+    "title": "DeepSeek 把推理框架开出来了，能抄算子，抄不走机房",
+    "date": "2026-10-23",
+    "summary": "DeepSeek 宣布开源 DeepInfer，开源之后真正的壁垒在哪",
+    "tag": "AI 热点",
+    "cover": "assets/covers/article-deepseek.jpg"
+  }
+]
