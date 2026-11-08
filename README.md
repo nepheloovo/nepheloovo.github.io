@@ -16,9 +16,10 @@ python3 -m http.server 4173 --directory dist
 
 ## 修改内容
 
-- `dist/index.html`：全部内容。五个面板：关于我、个人项目、技能与工具、文章、联系我。
-- `dist/style.css`：样式、配色（`:root` 变量）和手机适配。
-- `dist/script.js`：开机页、侧栏切换、项目轮播。
+- `dist/index.html`：全部内容。五个面板：关于我、项目（可按类别筛选）、能力、文章（可按标签筛选）、联系；宽屏右侧是个人名片栏。
+- `dist/style.css`：样式、配色（`:root` 变量，主色克莱因蓝 `#002fa7`）和手机适配（860px 以下变为底部导航）。
+- `dist/script.js`：开机页（自动进站、可跳过）、面板切换、筛选、公众号二维码弹窗。
+- `dist/assets/wechat-qr.jpg`：公众号二维码。
 - `dist/assets/covers/`：项目与文章封面。
 
 **新增文章**（不用改代码）：打开仓库 **Actions → Add WeChat article → Run workflow**，粘贴公众号文章链接，标签和一句话简介可空，点 **Run workflow**。它会抓取标题、发布日期和封面，写入 `dist/articles.json`，按日期从新到旧重新生成 `#writing` 文章区和文章数量，然后自动部署。GitHub 主页 README（`nepheloovo/nepheloovo`）每小时从 `https://nepheloovo.github.io/articles.json` 同步一次文章表格，也可以在那个仓库的 Actions 里手动运行 **Sync articles from website** 立刻同步。
@@ -36,7 +37,7 @@ python3 scripts/articles.py render   # 手动改了 articles.json 后重新生�
 
 ```sh
 TEXT=$(python3 -c "import urllib.parse;s=open('dist/index.html',encoding='utf-8').read();print(urllib.parse.quote(''.join(sorted(set(c for c in s if ord(c)>0x2E80)))))")
-URL=$(curl -s -A "Mozilla/5.0 Chrome/130" "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@900&text=$TEXT" | grep -oE 'https://[^)]+' | head -1)
+URL=$(curl -s -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@900&text=$TEXT" | grep -oE 'https://[^)]+' | head -1)
 curl -s -o dist/assets/display-zh.woff2 "$URL"
 ```
 

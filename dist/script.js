@@ -8,48 +8,50 @@
   };
 
   $('#year').textContent = new Date().getFullYear();
+  const main = $('#main');
 
-  /* ---------- 开机页：每个会话只出现一次，带锚点的直达链接跳过 ---------- */
+  /* ---------- 开机页：每个会话一次，约 1.6 秒后自动进站，可随时跳过 ---------- */
   const boot = $('#boot');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let bootTimer;
   const enter = () => {
-    if (boot.classList.contains('is-gone')) return;
+    if (boot.hidden || boot.classList.contains('is-gone')) return;
+    clearTimeout(bootTimer);
     boot.classList.add('is-gone');
-    boot.setAttribute('aria-hidden', 'true');
     store.set('xiaodu-booted', '1');
-    document.removeEventListener('keydown', onBootKey);
-    setTimeout(() => { boot.hidden = true; main.focus({ preventScroll: true }); }, 500);
+    document.removeEventListener('keydown', enter);
+    setTimeout(() => { boot.hidden = true; }, 450);
   };
-  const onBootKey = (e) => {
-    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') { e.preventDefault(); enter(); }
-  };
-  if (store.get('xiaodu-booted') || location.hash) {
+  if (store.get('xiaodu-booted') || location.hash || reduce) {
     boot.hidden = true;
   } else {
-    document.addEventListener('keydown', onBootKey);
+    bootTimer = setTimeout(enter, 1700);
     boot.addEventListener('click', enter);
-    $('#bootEnter').focus();
+    document.addEventListener('keydown', enter);
   }
 
   /* ---------- 面板切换（hash 路由） ---------- */
   const panels = $$('.panel');
   const navLinks = $$('[data-nav]');
-  const main = $('#main');
   const ids = panels.map((p) => p.id);
+  const names = Object.fromEntries(navLinks.map((a) => [a.dataset.nav, a.textContent.trim()]));
+  const crumb = $('#crumb');
 
-  const show = (id, focus) => {
+  const show = (id) => {
     if (!ids.includes(id)) id = 'about';
     panels.forEach((p) => p.classList.toggle('is-active', p.id === id));
     navLinks.forEach((a) => {
       const on = a.dataset.nav === id;
       a.classList.toggle('is-active', on);
-      if (on) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
-      else a.removeAttribute('aria-current');
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
-    main.scrollTop = 0;
-    if (focus) $('h2', $('#' + id))?.focus?.();
-    const c = $('#' + id + ' [data-carousel]');
-    if (c) c.refresh?.();
+    crumb.textContent = `~/ ${names[id]}`;
+    // 浏览器会按锚点把 section 滚进视野，这里统一回到顶部
+    const top = () => { main.scrollTop = 0; window.scrollTo(0, 0); };
+    top();
+    requestAnimationFrame(top);
   };
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href^="#"]');
@@ -63,64 +65,31 @@
   window.addEventListener('popstate', () => show(location.hash.slice(1)));
   show(location.hash.slice(1));
 
-  /* ---------- 轮播 ---------- */
-  $$('[data-carousel]').forEach((root) => {
-    const track = $('.track', root);
-    const slides = $$('.slide', root);
-    const prev = $('[data-prev]', root);
-    const next = $('[data-next]', root);
-    const count = $('[data-count]', root);
-    const bar = $('[data-progress]', root);
-    const pad = (n) => String(n).padStart(2, '0');
-    let current = 0;
-
-    const setCurrent = (i) => {
-      current = i;
-      slides.forEach((s, k) => s.classList.toggle('is-current', k === i));
-      count.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
-      bar.style.width = `${((i + 1) / slides.length) * 100}%`;
-      prev.disabled = i === 0;
-      next.disabled = i === slides.length - 1;
-    };
-    const goTo = (i) => {
-      i = Math.max(0, Math.min(slides.length - 1, i));
-      const s = slides[i];
-      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
-      setCurrent(i);
-    };
-    const nearest = () => {
-      const mid = track.scrollLeft + track.clientWidth / 2;
-      let best = 0, dist = Infinity;
-      slides.forEach((s, k) => {
-        const d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid);
-        if (d < dist) { dist = d; best = k; }
-      });
-      return best;
-    };
-
-    let raf;
-    track.addEventListener('scroll', () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => { const n = nearest(); if (n !== current) setCurrent(n); });
-    }, { passive: true });
-    prev.addEventListener('click', () => goTo(current - 1));
-    next.addEventListener('click', () => goTo(current + 1));
-    slides.forEach((s, k) => s.addEventListener('click', (e) => {
-      if (k !== current && !e.target.closest('a')) { e.preventDefault(); goTo(k); }
-    }));
-
-    document.addEventListener('keydown', (e) => {
-      if (!root.closest('.panel').classList.contains('is-active') || !boot.hidden) return;
-      if (e.target.matches('input, textarea')) return;
-      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+  /* ---------- 筛选 ---------- */
+  $$('[data-filter-group]').forEach((group) => {
+    const items = $$(':scope > [data-tags]', $(`[data-filter-items="${group.dataset.filterGroup}"]`));
+    if (group.hasAttribute('data-auto')) {
+      // 文章标签按出现次数自动生成
+      const count = {};
+      items.forEach((it) => it.dataset.tags.split(',').forEach((t) => { count[t] = (count[t] || 0) + 1; }));
+      const tags = Object.keys(count).sort((a, b) => count[b] - count[a]);
+      group.innerHTML = `<button type="button" class="is-on" data-filter="all">全部<small>${items.length}</small></button>` +
+        tags.map((t) => `<button type="button" data-filter="${t}">${t}<small>${count[t]}</small></button>`).join('');
+      if (tags.length < 2) group.hidden = true;
+    }
+    group.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-filter]');
+      if (!btn) return;
+      const f = btn.dataset.filter;
+      $$('[data-filter]', group).forEach((b) => b.classList.toggle('is-on', b === btn));
+      items.forEach((it) => { it.hidden = f !== 'all' && !it.dataset.tags.split(',').includes(f); });
     });
+  });
 
-    root.refresh = () => requestAnimationFrame(() => {
-      const s = slides[current];
-      track.scrollLeft = s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2;
-      setCurrent(current);
-    });
-    root.refresh();
+  /* ---------- 公众号二维码 ---------- */
+  const qr = $('#qr');
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-qr]')) qr.showModal();
+    else if (e.target === qr) qr.close();
   });
 })();

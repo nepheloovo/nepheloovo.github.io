@@ -2,40 +2,39 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>小渡 · AI 产品经理 | XIAODU.OS</title>
-  <meta name="description" content="小渡，AI 产品经理 · ENFP。RAG 知识库、多 Agent 应用、Agent Skills 与 AI 产品写作。">
-  <meta name="theme-color" content="#0e1511">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>小渡 · AI 产品经理</title>
+  <meta name="description" content="小渡，AI 产品经理 · ENFP。AI 应用、多 Agent、Agent Skills 与 AI 产品写作。">
+  <meta name="theme-color" content="#002fa7">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
-  <!-- 开机页 -->
-  <div class="boot" id="boot" role="dialog" aria-modal="true" aria-label="欢迎页">
-    <div class="boot-win">
-      <div class="boot-bar">
-        <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="mono">xiaodu@portfolio — zsh</span>
-        <span class="mono boot-bar-r">~/hello</span>
-      </div>
-      <div class="boot-body">
-        <div class="boot-log mono" aria-hidden="true">
-          <p class="line"><span class="prompt">➜</span> <b>./hello-xiaodu.sh</b></p>
-          <p class="line">Booting xiaodu.os ……………… <span class="ok">[ OK ]</span></p>
-          <p class="line">Loading 4 projects · 2 skills · 6 articles … <span class="ok">[ OK ]</span></p>
-          <p class="line">Identity: 小渡 / AI Product Manager / ENFP</p>
-        </div>
-        <p class="boot-kicker mono">HELLO, I'M</p>
-        <h1 class="boot-title">小渡<span class="dot">.</span></h1>
-        <p class="boot-sub">把复杂的技术，变成简单的体验。</p>
-        <button class="boot-enter" id="bootEnter" type="button">
-          <span class="k-key">按回车进入个人网站</span><span class="k-touch">点击进入个人网站</span><kbd aria-hidden="true">↵</kbd>
-        </button>
-      </div>
-      <div class="boot-foot mono"><span>PERSONAL PORTFOLIO / 2026</span><span>STATUS: <em>READY</em></span></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c1.4-3.6 4.2-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+    <symbol id="i-wechat" viewBox="0 0 24 24"><path d="M9.5 4C5.4 4 2 6.8 2 10.2c0 2 1.1 3.7 2.8 4.8L4.2 17l2.4-1.3c.9.3 1.9.4 2.9.4h.4"/><path d="M15.5 9.5c-3.6 0-6.5 2.4-6.5 5.3s2.9 5.2 6.5 5.2c.8 0 1.5-.1 2.2-.3l2 1.1-.5-1.7c1.4-1 2.3-2.5 2.3-4.3 0-2.9-2.9-5.3-6-5.3Z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13ZM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></symbol>
+  </svg>
+
+  <!-- 开机页：自动进站，可随时跳过 -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <button class="boot-skip" id="bootSkip" type="button">跳过</button>
+    <div class="boot-inner">
+      <p class="boot-line mono"><span>~</span> hello, 小渡</p>
+      <p class="boot-title">小渡<span class="dot">.</span></p>
+      <p class="boot-sub">把复杂的技术，变成简单的体验。</p>
+      <div class="boot-bar"><i></i></div>
     </div>
   </div>
 
@@ -45,337 +44,305 @@
       <!-- 顶栏 -->
       <header class="titlebar">
         <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
-        <a class="brand" href="#about">小渡<span class="dot">.</span><span class="brand-os mono">OS</span></a>
-        <span class="mono crumb">/ PORTFOLIO</span>
-        <span class="titlebar-r">
-          <span class="pill mono"><i class="led"></i>OPEN TO IDEAS</span>
-          <a class="mono gh" href="https://github.com/nepheloovo" target="_blank" rel="noopener">GITHUB ↗</a>
-        </span>
+        <a class="brand" href="#about">小渡<span class="dot">.</span></a>
+        <span class="crumb mono" id="crumb">~/ 关于我</span>
+        <a class="titlebar-gh" href="https://github.com/nepheloovo" target="_blank" rel="noopener"><svg class="ic"><use href="#i-github"/></svg><span>GitHub</span></a>
       </header>
 
       <div class="win-body">
 
-        <!-- 侧栏 -->
-        <aside class="side">
-          <div class="me">
-            <span class="avatar" aria-hidden="true">渡</span>
-            <span><b>小渡</b><small class="mono">AI PRODUCT MANAGER</small></span>
-          </div>
-          <p class="side-label mono">EXPLORE / 探索</p>
-          <nav class="nav" aria-label="网站导航">
-            <a href="#about" data-nav="about"><span class="mono">01</span>关于我<i aria-hidden="true">↗</i></a>
-            <a href="#projects" data-nav="projects"><span class="mono">02</span>个人项目<i aria-hidden="true">↗</i></a>
-            <a href="#skills" data-nav="skills"><span class="mono">03</span>技能与工具<i aria-hidden="true">↗</i></a>
-            <a href="#writing" data-nav="writing"><span class="mono">04</span>文章<i aria-hidden="true">↗</i></a>
-            <a href="#contact" data-nav="contact"><span class="mono">05</span>联系我<i aria-hidden="true">↗</i></a>
-          </nav>
-          <div class="side-foot mono">
-            <p><i class="led"></i>PORTFOLIO ONLINE</p>
-            <p>AI 产品 · RAG · Agent</p>
-            <p>公众号 · 小渡ovo</p>
-            <p>小红书 · 小渡</p>
-          </div>
-        </aside>
+        <!-- 左侧导航（手机端变为底部导航） -->
+        <nav class="rail" aria-label="网站导航">
+          <a href="#about" data-nav="about"><svg class="ic"><use href="#i-user"/></svg><span>关于我</span></a>
+          <a href="#projects" data-nav="projects"><svg class="ic"><use href="#i-grid"/></svg><span>项目</span></a>
+          <a href="#skills" data-nav="skills"><svg class="ic"><use href="#i-spark"/></svg><span>能力</span></a>
+          <a href="#writing" data-nav="writing"><svg class="ic"><use href="#i-pen"/></svg><span>文章</span></a>
+          <a href="#contact" data-nav="contact"><svg class="ic"><use href="#i-mail"/></svg><span>联系</span></a>
+        </nav>
 
         <main class="main" id="main" tabindex="-1">
 
-          <!-- 01 关于我 -->
+          <!-- 关于我 -->
           <section class="panel" id="about" aria-labelledby="about-h">
-            <div class="panel-head mono"><span>01 / ABOUT ME</span><span>HELLO, WORLD. 👋</span></div>
-
             <div class="hero">
-              <div class="card-id" aria-hidden="true">
-                <div class="card-id-bar mono"><span class="lights"><i></i><i></i><i></i></span>xiaodu.json</div>
-<pre class="mono"><code><span class="k">{</span>
-  <span class="p">"name"</span>: <span class="s">"小渡"</span>,
-  <span class="p">"role"</span>: <span class="s">"AI 产品经理"</span>,
-  <span class="p">"mbti"</span>: <span class="s">"ENFP"</span>,
-  <span class="p">"focus"</span>: [
-    <span class="s">"RAG"</span>, <span class="s">"Agent"</span>,
-    <span class="s">"AI 产品拆解"</span>
-  ],
-  <span class="p">"motto"</span>: <span class="s">"先把问题问对"</span>,
-  <span class="p">"status"</span>: <span class="s">"持续创造中"</span><span class="caret"></span>
-<span class="k">}</span></code></pre>
-                <div class="card-id-foot mono"><span>XIAODU</span><span>AI PRODUCT MANAGER</span></div>
-              </div>
-
-              <div class="hero-text">
-                <p class="pill mono"><i class="led"></i>OPEN TO COLLABORATION</p>
-                <h2 class="display" id="about-h">你好，<br><span class="nw">我是<em>小渡</em>。</span></h2>
-                <p class="role mono">AI 产品经理 / ENFP / 动手派</p>
-                <p class="lead">把复杂的技术，变成简单的体验。</p>
-                <p class="body">关心技术能做什么，更关心它能为人做什么。我习惯先回到具体的人和场景，问清楚“这件事真的需要 AI 吗”，再自己动手把 PRD 做成能跑的产品，用真实的使用结果决定下一步。</p>
-                <div class="actions">
-                  <a class="btn btn-primary" href="#projects">查看项目<i aria-hidden="true">↗</i></a>
-                  <a class="btn" href="#writing">阅读文章<i aria-hidden="true">↗</i></a>
-                </div>
+              <p class="kicker">你好，我是</p>
+              <h1 class="display" id="about-h">小渡<span class="dot">.</span></h1>
+              <p class="role">AI 产品经理 <i>·</i> ENFP <i>·</i> 动手派</p>
+              <p class="lead">把复杂的技术，变成简单的体验。</p>
+              <p class="body">关心技术能做什么，更关心它能为人做什么。我习惯先回到具体的人和场景，问清楚“这件事真的需要 AI 吗”，再自己动手把 PRD 做成能跑的产品，用真实的使用结果决定下一步。</p>
+              <div class="actions">
+                <a class="btn btn-primary" href="#projects">看看我做的项目<svg class="ic"><use href="#i-next"/></svg></a>
+                <a class="btn" href="#writing">读读我的文章</a>
               </div>
             </div>
 
             <div class="block">
-              <div class="block-head">
-                <div><p class="eyebrow mono">FOCUS AREAS</p><h3 class="h3">从问题走向作品</h3></div>
-                <p class="hint">点击卡片，浏览对应内容。</p>
-              </div>
-              <div class="focus">
-                <a class="focus-card" href="#projects">
-                  <span class="mono">01 / BUILD</span>
-                  <b>AI 应用</b>
-                  <p>知序 AI 应用中台、多 Agent 视频诊断，以及几个交互落地页。</p>
-                  <em class="mono">探索项目 ↗</em>
-                </a>
-                <a class="focus-card" href="#skills">
-                  <span class="mono">02 / SHARE</span>
-                  <b>Agent Skills</b>
-                  <p>把 AI 产品拆解和公众号写作的方法，写成可直接部署的 Skill。</p>
-                  <em class="mono">查看技能 ↗</em>
-                </a>
-                <a class="focus-card" href="#writing">
-                  <span class="mono">03 / THINK</span>
-                  <b>公开写作</b>
-                  <p>公众号「小渡ovo」：AI 热点解读与 AI 产品思考。</p>
-                  <em class="mono">阅读文章 ↗</em>
-                </a>
+              <h2 class="h2">我怎么做产品</h2>
+              <ol class="ways">
+                <li><b>先把问题问对</b><p>谁遇到了什么困难？今天怎么解决？这件事真的需要 AI 吗？</p></li>
+                <li><b>自己动手做出来</b><p>不停在 PRD 上，把想法做成能跑、能用、能给人试的产品。</p></li>
+                <li><b>用结果说话</b><p>用评测集、真实案例和使用反馈，判断下一步改什么。</p></li>
+              </ol>
+            </div>
+
+            <div class="block">
+              <h2 class="h2">最近在做</h2>
+              <div class="now">
+                <a class="now-card" href="#projects"><span class="tag">项目</span><b>知序 KnowOrder</b><p>把企业知识变成可上线、可评测、可追溯的 AI 应用。</p></a>
+                <a class="now-card" href="#writing"><span class="tag">写作</span><b>公众号「小渡ovo」</b><p>AI 热点解读与 AI 产品思考，写给刚开始关注 AI 的人。</p></a>
               </div>
             </div>
+
+            <a class="next" href="#projects"><span>下一节</span><b>项目</b><svg class="ic"><use href="#i-next"/></svg></a>
           </section>
 
-          <!-- 02 个人项目 -->
+          <!-- 项目 -->
           <section class="panel" id="projects" aria-labelledby="projects-h">
-            <div class="panel-head mono"><span>02 / SELECTED PROJECTS</span><span>PUBLIC WORK</span></div>
-            <div class="sec-head">
-              <div>
-                <p class="eyebrow mono">SELECTED WORK / 精选项目</p>
-                <h2 class="display-2" id="projects-h">从真实问题出发，<br>做可用的产品。</h2>
-              </div>
-              <p class="big-num"><b>04</b><span class="mono">PROJECTS</span></p>
+            <header class="sec-head">
+              <h2 class="display-2" id="projects-h">项目</h2>
+              <p class="sec-sub">从真实问题出发，做能用的产品。</p>
+            </header>
+
+            <div class="filters" role="group" aria-label="按类别筛选项目" data-filter-group="projects">
+              <button type="button" class="is-on" data-filter="all">全部</button>
+              <button type="button" data-filter="ai">AI 应用</button>
+              <button type="button" data-filter="skill">Agent Skill</button>
+              <button type="button" data-filter="web">网页作品</button>
             </div>
 
-            <div class="carousel" data-carousel>
-              <p class="carousel-label mono">PROJECT INDEX</p>
-              <div class="track" tabindex="0" aria-label="项目列表，可左右滑动">
-                <article class="slide">
-                  <div class="cover"><img src="assets/covers/knoworder.jpg" alt="知序 KnowOrder 工作台界面" loading="lazy"></div>
-                  <div class="slide-body">
-                    <p class="slide-meta mono"><span>01 / 04</span><span class="tag">AI 应用</span></p>
-                    <h3>知序 KnowOrder · AI 应用中台</h3>
-                    <p>把企业知识变成可上线、可评测、可追溯的 AI 应用：按文件自动切块的知识库，简易应用 / Agent / Chat Flow 三种编排，AI 设计评测集并作为发布门禁，每次运行留完整 Trace、可一键回流成评测 Case。</p>
-                    <p class="chips mono"><span>FastAPI</span><span>LangChain</span><span>React</span><span>pgvector</span><span>Celery</span></p>
-                    <p class="links"><a href="https://github.com/nepheloovo/zhishu-rag-platform" target="_blank" rel="noopener">查看仓库 ↗</a></p>
+            <div class="projects" data-filter-items="projects">
+              <article class="project" data-tags="ai">
+                <div class="project-cover"><img src="assets/covers/knoworder.jpg" alt="知序 KnowOrder 工作台界面" loading="lazy"></div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">AI 应用</span></p>
+                  <h3>知序 KnowOrder · AI 应用中台</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>企业知识散落各处，做成 AI 应用后又难评估、出了问题难追溯。</dd></div>
+                    <div><dt>怎么做的</dt><dd>按文件自动切块的知识库；简易应用 / Agent / Chat Flow 三种编排方式。</dd></div>
+                    <div><dt>亮点</dt><dd>评测集作为上线门禁，每次运行留完整记录，可一键变成新的评测用例。</dd></div>
+                  </dl>
+                  <details>
+                    <summary>查看技术栈</summary>
+                    <p class="chips"><span>FastAPI</span><span>LangChain</span><span>React</span><span>pgvector</span><span>Celery</span></p>
                     <p class="credit">基于 chusimin/zhishu-rag-platform 经授权二次开发</p>
-                  </div>
-                </article>
-                <article class="slide">
-                  <div class="cover cover-gen cover-douyin" aria-hidden="true">
-                    <span class="mono">POST /diagnose → SSE</span>
-                    <b>前 3 秒<br>诊断</b>
-                    <span class="flow mono"><i>parsing</i><i>experts</i><i>debate</i><i>judge</i><i>done</i></span>
-                  </div>
-                  <div class="slide-body">
-                    <p class="slide-meta mono"><span>02 / 04</span><span class="tag">Multi-Agent</span></p>
-                    <h3>抖音视频诊断</h3>
-                    <p>抽取视频前 3 秒画面和文案，内容 / 视觉 / 增长三位专家 Agent 诊断 → 辩论 → 评审出报告；按 PRD 设计三级降级模式，失败时不编造结论。</p>
-                    <p class="chips mono"><span>FastAPI</span><span>SSE</span><span>ffmpeg</span><span>DeepSeek</span></p>
-                    <p class="links"><a href="https://github.com/nepheloovo/douyin-video-diagnose" target="_blank" rel="noopener">查看仓库 ↗</a><a href="https://douyin-video-diagnose.onrender.com/health" target="_blank" rel="noopener">在线 API ↗</a></p>
-                  </div>
-                </article>
-                <article class="slide">
-                  <div class="cover"><img src="assets/covers/pinterest.jpg" alt="Pinterest 灵感落地页首屏" loading="lazy"></div>
-                  <div class="slide-body">
-                    <p class="slide-meta mono"><span>03 / 04</span><span class="tag">创意前端</span></p>
-                    <h3>Pinterest 灵感落地页</h3>
-                    <p>暗色电影感的六段式产品落地页：可交互灵感图墙、筛选与本地收藏画板，完整适配手机和减弱动效。</p>
-                    <p class="chips mono"><span>HTML</span><span>CSS</span><span>JavaScript</span></p>
-                    <p class="links"><a href="https://github.com/nepheloovo/pinterest-landing" target="_blank" rel="noopener">查看仓库 ↗</a><a href="https://nepheloovo.github.io/pinterest-landing/" target="_blank" rel="noopener">在线体验 ↗</a></p>
-                  </div>
-                </article>
-                <article class="slide">
-                  <div class="cover"><img src="assets/covers/attachment.jpg" alt="依恋类型小测首页" loading="lazy"></div>
-                  <div class="slide-body">
-                    <p class="slide-meta mono"><span>04 / 04</span><span class="tag">小工具</span></p>
-                    <h3>依恋类型小测</h3>
-                    <p>十二道轻问、一张可分享的结果卡。一个关于“先看见自己，再靠近别人”的自我对照静态站（娱乐参考）。</p>
-                    <p class="chips mono"><span>HTML</span><span>JavaScript</span></p>
-                    <p class="links"><a href="https://github.com/nepheloovo/attachment-style" target="_blank" rel="noopener">查看仓库 ↗</a></p>
-                  </div>
-                </article>
-              </div>
-              <div class="carousel-ctrl">
-                <span class="mono hint">← → 键切换 / 触控板横向滑动</span>
-                <span class="ctrl-r">
-                  <button class="arrow" type="button" data-prev aria-label="上一个">‹</button>
-                  <span class="mono count" data-count>01 / 04</span>
-                  <button class="arrow" type="button" data-next aria-label="下一个">›</button>
-                </span>
-              </div>
-              <div class="progress" aria-hidden="true"><i data-progress></i></div>
-            </div>
-            <p class="more"><a class="mono" href="https://github.com/nepheloovo?tab=repositories" target="_blank" rel="noopener">浏览全部公开仓库 ↗</a></p>
-          </section>
+                  </details>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/zhishu-rag-platform" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
 
-          <!-- 03 技能与工具 -->
-          <section class="panel" id="skills" aria-labelledby="skills-h">
-            <div class="panel-head mono"><span>03 / SKILLS &amp; TOOLS</span><span>METHODS IN PRACTICE</span></div>
-            <div class="sec-head">
-              <div>
-                <p class="eyebrow mono">AGENT SKILLS / 工具与技能</p>
-                <h2 class="display-2" id="skills-h">把方法沉淀下来，<br>让 AI 也能复用。</h2>
-              </div>
-              <p class="big-num"><b>02</b><span class="mono">SKILLS</span></p>
-            </div>
+              <article class="project" data-tags="ai">
+                <div class="project-cover cover-gen" aria-hidden="true">
+                  <span class="mono">视频 → 三位专家 → 报告</span>
+                  <b>前 3 秒<br>诊断</b>
+                </div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">AI 应用</span><span class="tag tag-line">多 Agent</span></p>
+                  <h3>抖音视频诊断</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>创作者不知道视频为什么在开头几秒就留不住人。</dd></div>
+                    <div><dt>怎么做的</dt><dd>抽取前 3 秒画面和文案，内容、视觉、增长三位“专家”分别诊断，辩论后由评审给出报告。</dd></div>
+                    <div><dt>亮点</dt><dd>按 PRD 设计三级降级：某一步失败时如实说明，不编造结论。</dd></div>
+                  </dl>
+                  <details>
+                    <summary>查看技术栈</summary>
+                    <p class="chips"><span>FastAPI</span><span>SSE 流式输出</span><span>ffmpeg</span><span>DeepSeek</span><span>qwen-vl</span></p>
+                  </details>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/douyin-video-diagnose" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
 
-            <div class="skill-cards">
-              <a class="skill-card" href="https://github.com/nepheloovo/ai-product-teardown-skill" target="_blank" rel="noopener">
-                <div class="doc" aria-hidden="true">
+              <article class="project" data-tags="skill">
+                <div class="project-cover cover-doc" aria-hidden="true">
                   <span class="mono">SKILL.md</span>
                   <b>AI 产品拆解</b>
                   <i></i><i></i><i class="short"></i>
-                  <span class="doc-tag mono">已确认 / 待核实</span>
                 </div>
-                <div>
-                  <p class="slide-meta mono"><span>01 / 02</span><span class="tag">Skill</span></p>
-                  <h3>ai-product-teardown</h3>
-                  <p>取证与分层拆解一款 AI 产品（尤其 Agent / Multi-Agent）：定位、用户旅程、人机分工、模型成本、壁垒与架构，输出飞书 / Markdown / HTML 报告，单列「待核实」清单。</p>
-                  <em class="mono">查看仓库 ↗</em>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">Agent Skill</span></p>
+                  <h3>AI 产品拆解 Skill</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>拆解一款 AI 产品时，信息零散、结论容易拍脑袋。</dd></div>
+                    <div><dt>怎么做的</dt><dd>让 AI 按固定方法取证、分层拆解：定位、用户旅程、人机分工、成本、壁垒与架构。</dd></div>
+                    <div><dt>亮点</dt><dd>输出飞书 / Markdown / HTML 报告，没核实的结论单独列成“待核实”清单。</dd></div>
+                  </dl>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/ai-product-teardown-skill" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
                 </div>
-              </a>
-              <a class="skill-card" href="https://github.com/nepheloovo/ai-hotspot-wechat-skill" target="_blank" rel="noopener">
-                <div class="doc doc-green" aria-hidden="true">
+              </article>
+
+              <article class="project" data-tags="skill">
+                <div class="project-cover cover-doc cover-doc-blue" aria-hidden="true">
                   <span class="mono">SKILL.md</span>
                   <b>AI 热点写作</b>
                   <i></i><i></i><i class="short"></i>
-                  <span class="doc-tag mono">1200–2500 字</span>
                 </div>
-                <div>
-                  <p class="slide-meta mono"><span>02 / 02</span><span class="tag">Skill</span></p>
-                  <h3>ai-hotspot-wechat</h3>
-                  <p>AI 热点公众号写作：任务书 → 主张核对 → 初稿，区分“用户提供 / 已核实 / 小渡判断”，文末附主张—来源表，用懂行朋友聊天的口吻写。</p>
-                  <em class="mono">查看仓库 ↗</em>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">Agent Skill</span></p>
+                  <h3>AI 热点写作 Skill</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>追热点写公众号，既要快，又不能把没核实的说法写成事实。</dd></div>
+                    <div><dt>怎么做的</dt><dd>任务书 → 主张核对 → 初稿，区分“用户提供 / 已核实 / 小渡判断”。</dd></div>
+                    <div><dt>亮点</dt><dd>文末附主张与来源对照表，用懂行朋友聊天的口吻写。</dd></div>
+                  </dl>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/ai-hotspot-wechat-skill" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
                 </div>
-              </a>
+              </article>
+
+              <article class="project" data-tags="web">
+                <div class="project-cover"><img src="assets/covers/pinterest.jpg" alt="Pinterest 灵感落地页首屏" loading="lazy"></div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">网页作品</span></p>
+                  <h3>Pinterest 灵感落地页</h3>
+                  <dl class="facts">
+                    <div><dt>是什么</dt><dd>暗色电影感的六段式产品落地页。</dd></div>
+                    <div><dt>亮点</dt><dd>可交互的灵感图墙、筛选和本地收藏画板，手机上也能完整使用。</dd></div>
+                  </dl>
+                  <p class="links">
+                    <a class="btn btn-sm btn-primary" href="https://nepheloovo.github.io/pinterest-landing/" target="_blank" rel="noopener">在线体验<svg class="ic"><use href="#i-arrow"/></svg></a>
+                    <a class="btn btn-sm" href="https://github.com/nepheloovo/pinterest-landing" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a>
+                  </p>
+                </div>
+              </article>
+
+              <article class="project" data-tags="web">
+                <div class="project-cover"><img src="assets/covers/attachment.jpg" alt="依恋类型小测首页" loading="lazy"></div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">网页作品</span></p>
+                  <h3>依恋类型小测</h3>
+                  <dl class="facts">
+                    <div><dt>是什么</dt><dd>十二道轻问、一张可分享的结果卡，关于“先看见自己，再靠近别人”。</dd></div>
+                    <div><dt>说明</dt><dd>自我对照的小网页，仅供娱乐参考。</dd></div>
+                  </dl>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/attachment-style" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
             </div>
 
-            <div class="block">
-              <div class="block-head">
-                <div><p class="eyebrow mono">CAPABILITIES</p><h3 class="h3">我能做什么</h3></div>
-              </div>
-              <div class="caps">
-                <div class="cap"><span class="mono">RAG</span><b>知识库</b><p>文档解析 / OCR → 切块 → 向量召回 → Rerank → 流式生成 + 引用溯源</p></div>
-                <div class="cap"><span class="mono">AGENT</span><b>Agent 设计</b><p>ReAct 留痕、专家—辩论—评审的多 Agent 链路、Skill 编写与部署</p></div>
-                <div class="cap"><span class="mono">EVAL</span><b>质量闭环</b><p>评测集设计、线上 Case 回流、Trace 可观测、Token 成本核算</p></div>
-                <div class="cap"><span class="mono">PM</span><b>产品方法</b><p>需求定义、PRD 与降级策略、竞品与 AI 产品拆解、体验打磨</p></div>
-              </div>
-            </div>
-
-            <div class="block">
-              <div class="block-head">
-                <div><p class="eyebrow mono">STACK</p><h3 class="h3">常用工具</h3></div>
-              </div>
-              <div class="stack">
-                <div><span class="mono">BACKEND / AI</span><p class="chips mono"><span>Python</span><span>FastAPI</span><span>LangChain</span><span>Celery</span><span>PostgreSQL + pgvector</span><span>Redis</span><span>Docker</span></p></div>
-                <div><span class="mono">FRONTEND</span><p class="chips mono"><span>TypeScript</span><span>Vue 3</span><span>React</span><span>Vite</span><span>Tailwind CSS</span><span>three.js</span><span>GLSL</span><span>GSAP</span></p></div>
-                <div><span class="mono">MODELS / SHIP</span><p class="chips mono"><span>OpenAI 兼容接口</span><span>DeepSeek</span><span>通义 qwen-vl</span><span>GitHub Actions</span><span>GitHub Pages</span><span>Render</span></p></div>
-              </div>
-            </div>
+            <p class="more"><a href="https://github.com/nepheloovo?tab=repositories" target="_blank" rel="noopener">在 GitHub 浏览全部公开项目<svg class="ic"><use href="#i-arrow"/></svg></a></p>
+            <a class="next" href="#skills"><span>下一节</span><b>能力</b><svg class="ic"><use href="#i-next"/></svg></a>
           </section>
 
-          <!-- 04 文章 -->
-          <section class="panel" id="writing" aria-labelledby="writing-h">
-            <div class="panel-head mono"><span>04 / PUBLIC WRITING</span><span>ARTICLE ARCHIVE</span></div>
-            <div class="sec-head">
-              <div>
-                <p class="eyebrow mono">WRITING / 公众号「小渡ovo」</p>
-                <h2 class="display-2" id="writing-h">持续观察，<br>也持续公开表达。</h2>
-              </div>
-              <p class="big-num"><b>06</b><span class="mono">ARTICLES</span></p>
+          <!-- 能力 -->
+          <section class="panel" id="skills" aria-labelledby="skills-h">
+            <header class="sec-head">
+              <h2 class="display-2" id="skills-h">能力</h2>
+              <p class="sec-sub">我能把哪些事做好。</p>
+            </header>
+
+            <div class="caps">
+              <div class="cap"><span class="cap-no">01</span><b>知识库问答（RAG）</b><p>让 AI 基于你的资料回答：文档解析、切块、检索、排序，回答带出处。</p></div>
+              <div class="cap"><span class="cap-no">02</span><b>Agent 设计</b><p>让 AI 分工协作完成任务：多 Agent 的诊断—辩论—评审链路，Skill 编写与部署。</p></div>
+              <div class="cap"><span class="cap-no">03</span><b>质量闭环</b><p>设计评测集，把线上问题变成新用例，记录每一次运行，核算调用成本。</p></div>
+              <div class="cap"><span class="cap-no">04</span><b>产品方法</b><p>需求定义、PRD 与降级策略、竞品与 AI 产品拆解、体验打磨。</p></div>
             </div>
 
-            <div class="articles">
+            <div class="block">
+              <h2 class="h2">常用工具</h2>
+              <p class="chips chips-lg"><span>LangChain</span><span>JavaScript</span><span>React</span><span>OpenAI 兼容接口</span><span>DeepSeek</span><span>通义 qwen-vl</span></p>
+            </div>
+
+            <a class="next" href="#writing"><span>下一节</span><b>文章</b><svg class="ic"><use href="#i-next"/></svg></a>
+          </section>
+
+          <!-- 文章 -->
+          <section class="panel" id="writing" aria-labelledby="writing-h">
+            <header class="sec-head">
+              <h2 class="display-2" id="writing-h">文章</h2>
+              <p class="sec-sub">公众号「小渡ovo」· 共 <b id="articleCount">6</b> 篇</p>
+            </header>
+
+            <div class="filters" role="group" aria-label="按标签筛选文章" data-filter-group="articles" data-auto></div>
+
+            <div class="articles" data-filter-items="articles">
               <!-- articles:start -->
-              <a class="article article-feature" href="https://mp.weixin.qq.com/s/jWw2dwjDNryqrFVS7_Zohg" target="_blank" rel="noopener">
+              <a class="article-feature" data-tags="AI 热点" href="https://mp.weixin.qq.com/s/jWw2dwjDNryqrFVS7_Zohg" target="_blank" rel="noopener">
                 <div class="cover"><img src="assets/covers/article-558f9b9cd7.jpg" alt="" loading="lazy"></div>
                 <div class="article-body">
-                  <p class="slide-meta mono"><span>01 / 06 · 2026-11-06</span><span class="tag">AI 热点</span></p>
+                  <p class="meta"><span class="tag">最新</span><span class="tag tag-line">AI 热点</span><span class="date">2026-11-06</span></p>
                   <h3>Deepseek SuperAgent超在哪了？</h3>
                   <p>它没超在模型上，超在把「人肉调度员」这份活从人身上接走了</p>
-                  <em class="mono">打开原文 ↗</em>
+                  <em>阅读原文<svg class="ic"><use href="#i-arrow"/></svg></em>
                 </div>
               </a>
-              <a class="article" href="https://mp.weixin.qq.com/s/siRmfMioUSMiCNVn96RZmA" target="_blank" rel="noopener">
-                <div class="cover"><img src="assets/covers/article-github.jpg" alt="" loading="lazy"></div>
-                <div class="article-body">
-                  <p class="slide-meta mono"><span>02 / 06 · 2026-11-03</span><span class="tag">入门指南</span></p>
-                  <h3>GitHub 小白指南：认识这 8 个词，就能看懂一个项目</h3>
-                  <em class="mono">打开原文 ↗</em>
-                </div>
+              <a class="article-row" data-tags="入门指南" href="https://mp.weixin.qq.com/s/siRmfMioUSMiCNVn96RZmA" target="_blank" rel="noopener">
+                <span class="no">02</span>
+                <h3>GitHub 小白指南：认识这 8 个词，就能看懂一个项目</h3>
+                <p>不会写代码，也该看懂 GitHub：一个项目页面怎么看、八个必要功能是干什么的</p>
+                <span class="side"><span class="tag tag-line">入门指南</span><span class="date">2026-11-03</span></span>
               </a>
-              <a class="article" href="https://mp.weixin.qq.com/s/mkJX2PjDeKOJjKcClSZCsA" target="_blank" rel="noopener">
-                <div class="cover"><img src="assets/covers/article-spec.jpg" alt="" loading="lazy"></div>
-                <div class="article-body">
-                  <p class="slide-meta mono"><span>03 / 06 · 2026-11-02</span><span class="tag">产品方法</span></p>
-                  <h3>Spec：写给一个不会提问的同事</h3>
-                  <em class="mono">打开原文 ↗</em>
-                </div>
+              <a class="article-row" data-tags="产品方法" href="https://mp.weixin.qq.com/s/mkJX2PjDeKOJjKcClSZCsA" target="_blank" rel="noopener">
+                <span class="no">03</span>
+                <h3>Spec：写给一个不会提问的同事</h3>
+                <p>Spec 火起来，是因为需求文档多了一个只会照做的读者</p>
+                <span class="side"><span class="tag tag-line">产品方法</span><span class="date">2026-11-02</span></span>
               </a>
-              <a class="article" href="https://mp.weixin.qq.com/s/ina4Snx05fImKLAQpukz3A" target="_blank" rel="noopener">
-                <div class="cover"><img src="assets/covers/article-fde.jpg" alt="" loading="lazy"></div>
-                <div class="article-body">
-                  <p class="slide-meta mono"><span>04 / 06 · 2026-10-29</span><span class="tag">AI 行业</span></p>
-                  <h3>FDE：企业 AI 的装修工</h3>
-                  <em class="mono">打开原文 ↗</em>
-                </div>
+              <a class="article-row" data-tags="AI 行业" href="https://mp.weixin.qq.com/s/ina4Snx05fImKLAQpukz3A" target="_blank" rel="noopener">
+                <span class="no">04</span>
+                <h3>FDE：企业 AI 的装修工</h3>
+                <p>FDE 火了，但这可能不是 AI 行业的好消息</p>
+                <span class="side"><span class="tag tag-line">AI 行业</span><span class="date">2026-10-29</span></span>
               </a>
-              <a class="article" href="https://mp.weixin.qq.com/s/JTnNsdvWjVnkz5e3UsQYoQ" target="_blank" rel="noopener">
-                <div class="cover"><img src="assets/covers/article-prd.jpg" alt="" loading="lazy"></div>
-                <div class="article-body">
-                  <p class="slide-meta mono"><span>05 / 06 · 2026-10-26</span><span class="tag">产品方法</span></p>
-                  <h3>传统 PRD 到 AI PRD 到基因突变</h3>
-                  <em class="mono">打开原文 ↗</em>
-                </div>
+              <a class="article-row" data-tags="产品方法" href="https://mp.weixin.qq.com/s/JTnNsdvWjVnkz5e3UsQYoQ" target="_blank" rel="noopener">
+                <span class="no">05</span>
+                <h3>传统 PRD 到 AI PRD 到基因突变</h3>
+                <p>从传统 PRD 到 AI PRD，产品文档正在发生什么变化</p>
+                <span class="side"><span class="tag tag-line">产品方法</span><span class="date">2026-10-26</span></span>
               </a>
-              <a class="article article-wide" href="https://mp.weixin.qq.com/s/ydta9O89QAXyggxeBNjlhA" target="_blank" rel="noopener">
-                <div class="cover"><img src="assets/covers/article-deepseek.jpg" alt="" loading="lazy"></div>
-                <div class="article-body">
-                  <p class="slide-meta mono"><span>06 / 06 · 2026-10-23</span><span class="tag">AI 热点</span></p>
-                  <h3>DeepSeek 把推理框架开出来了，能抄算子，抄不走机房</h3>
-                  <em class="mono">打开原文 ↗</em>
-                </div>
+              <a class="article-row" data-tags="AI 热点" href="https://mp.weixin.qq.com/s/ydta9O89QAXyggxeBNjlhA" target="_blank" rel="noopener">
+                <span class="no">06</span>
+                <h3>DeepSeek 把推理框架开出来了，能抄算子，抄不走机房</h3>
+                <p>DeepSeek 宣布开源 DeepInfer，开源之后真正的壁垒在哪</p>
+                <span class="side"><span class="tag tag-line">AI 热点</span><span class="date">2026-10-23</span></span>
               </a>
               <!-- articles:end -->
             </div>
-            <p class="more mono">更多文章：微信搜索公众号「小渡ovo」</p>
+            <p class="more"><button type="button" class="link-btn" data-qr>扫码关注公众号，看更多文章</button></p>
+            <a class="next" href="#contact"><span>下一节</span><b>联系</b><svg class="ic"><use href="#i-next"/></svg></a>
           </section>
 
-          <!-- 05 联系我 -->
+          <!-- 联系 -->
           <section class="panel" id="contact" aria-labelledby="contact-h">
-            <div class="panel-head mono"><span>05 / GET IN TOUCH</span><span>LET'S CONNECT</span></div>
-            <div class="cta">
-              <p class="eyebrow mono">HAVE AN IDEA? / 交流一下</p>
-              <h2 class="display-2" id="contact-h">一起把值得解决的问题，<br>做成真正可用的产品。</h2>
-              <p class="body">欢迎聊 AI 产品、RAG 与 Agent 应用、内容创作，或者任何一个有趣的想法。</p>
-              <a class="btn btn-primary" href="https://github.com/nepheloovo" target="_blank" rel="noopener">在 GitHub 找到我<i aria-hidden="true">↗</i></a>
-            </div>
+            <header class="sec-head">
+              <h2 class="display-2" id="contact-h">联系</h2>
+              <p class="sec-sub">欢迎聊 AI 产品、Agent 应用、内容创作，或者任何一个有趣的想法。</p>
+            </header>
             <ul class="contact-rows">
-              <li><a href="https://github.com/nepheloovo" target="_blank" rel="noopener"><span class="mono">01 / GITHUB</span><b>github.com/nepheloovo</b><i aria-hidden="true">↗</i></a></li>
-              <li><a href="#writing"><span class="mono">02 / 公众号</span><b>小渡ovo</b><small>微信搜索关注</small><i aria-hidden="true">↗</i></a></li>
-              <li><a href="https://www.xiaohongshu.com/user/profile/5c0106fb0000000008019e70" target="_blank" rel="noopener"><span class="mono">03 / 小红书</span><b>小渡</b><small>点击访问主页</small><i aria-hidden="true">↗</i></a></li>
-              <li><a href="https://github.com/nepheloovo/nepheloovo.github.io" target="_blank" rel="noopener"><span class="mono">04 / SOURCE</span><b>本站源码</b><i aria-hidden="true">↗</i></a></li>
+              <li><a href="https://github.com/nepheloovo" target="_blank" rel="noopener"><svg class="ic"><use href="#i-github"/></svg><span class="label">GitHub</span><b>nepheloovo</b><svg class="ic go"><use href="#i-arrow"/></svg></a></li>
+              <li><button type="button" data-qr><svg class="ic"><use href="#i-wechat"/></svg><span class="label">公众号</span><b>小渡ovo</b><small>点击扫码关注</small><svg class="ic go"><use href="#i-arrow"/></svg></button></li>
+              <li><a href="https://www.xiaohongshu.com/user/profile/5c0106fb0000000008019e70" target="_blank" rel="noopener"><svg class="ic"><use href="#i-book"/></svg><span class="label">小红书</span><b>小渡</b><svg class="ic go"><use href="#i-arrow"/></svg></a></li>
+              <li><a href="https://github.com/nepheloovo/nepheloovo.github.io" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg><span class="label">本站源码</span><b>nepheloovo.github.io</b><svg class="ic go"><use href="#i-arrow"/></svg></a></li>
             </ul>
+            <a class="next" href="#about"><span>回到开头</span><b>关于我</b><svg class="ic"><use href="#i-next"/></svg></a>
           </section>
 
         </main>
-      </div>
 
-      <!-- 状态栏 -->
-      <footer class="statusbar mono">
-        <span><i class="led"></i>XIAODU.OS / ONLINE</span>
-        <span class="status-mid">4 PROJECTS · 2 SKILLS · 6 ARTICLES</span>
-        <span>© <span id="year">2026</span> 小渡</span>
-      </footer>
+        <!-- 右侧名片栏（宽屏显示） -->
+        <aside class="profile" aria-label="个人名片">
+          <div class="avatar" aria-hidden="true">渡</div>
+          <p class="profile-name">小渡</p>
+          <p class="profile-role">AI 产品经理 · ENFP</p>
+          <p class="profile-quote">把复杂的技术，变成简单的体验。</p>
+          <p class="profile-tags"><span>AI 应用</span><span>Agent</span><span>AI 产品拆解</span><span>写作</span></p>
+          <p class="profile-label">找到我</p>
+          <ul class="profile-links">
+            <li><a href="https://github.com/nepheloovo" target="_blank" rel="noopener"><svg class="ic"><use href="#i-github"/></svg>GitHub</a></li>
+            <li><button type="button" data-qr><svg class="ic"><use href="#i-wechat"/></svg>公众号 · 小渡ovo</button></li>
+            <li><a href="https://www.xiaohongshu.com/user/profile/5c0106fb0000000008019e70" target="_blank" rel="noopener"><svg class="ic"><use href="#i-book"/></svg>小红书 · 小渡</a></li>
+          </ul>
+          <p class="profile-foot">© <span id="year">2026</span> 小渡</p>
+        </aside>
+      </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- 公众号二维码 -->
+  <dialog class="qr" id="qr" aria-labelledby="qr-h">
+    <form method="dialog"><button class="qr-close" aria-label="关闭">×</button></form>
+    <img src="assets/wechat-qr.jpg" alt="公众号「小渡ovo」二维码" width="220" height="220">
+    <p id="qr-h"><b>公众号「小渡ovo」</b></p>
+    <p class="qr-sub">微信扫一扫关注，或在微信里搜索「小渡ovo」</p>
+  </dialog>
+
+  <script src="script.js?v=3"></script>
 </body>
 </html>

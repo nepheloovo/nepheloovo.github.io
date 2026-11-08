@@ -114,16 +114,23 @@ def add(url, tag, summary):
     print(f"已添加：{info['date']} {info['title']}")
 
 
-def card(a, i, total, cls):
+def card(a, i):
     e = lambda s: html.escape(s, quote=True)
-    summary = f"\n                  <p>{e(a['summary'])}</p>" if cls == "article-feature" and a.get("summary") else ""
-    cover = f'\n                <div class="cover"><img src="{e(a["cover"])}" alt="" loading="lazy"></div>' if a.get("cover") else ""
-    return f"""              <a class="article{' ' + cls if cls else ''}" href="{e(a['url'])}" target="_blank" rel="noopener">{cover}
+    if i == 1:
+        cover = f'\n                <div class="cover"><img src="{e(a["cover"])}" alt="" loading="lazy"></div>' if a.get("cover") else ""
+        summary = f"\n                  <p>{e(a['summary'])}</p>" if a.get("summary") else ""
+        return f"""              <a class="article-feature" data-tags="{e(a['tag'])}" href="{e(a['url'])}" target="_blank" rel="noopener">{cover}
                 <div class="article-body">
-                  <p class="slide-meta mono"><span>{i:02d} / {total:02d} · {a['date']}</span><span class="tag">{e(a['tag'])}</span></p>
+                  <p class="meta"><span class="tag">最新</span><span class="tag tag-line">{e(a['tag'])}</span><span class="date">{a['date']}</span></p>
                   <h3>{e(a['title'])}</h3>{summary}
-                  <em class="mono">打开原文 ↗</em>
+                  <em>阅读原文<svg class="ic"><use href="#i-arrow"/></svg></em>
                 </div>
+              </a>"""
+    summary = f"\n                <p>{e(a['summary'])}</p>" if a.get("summary") else ""
+    return f"""              <a class="article-row" data-tags="{e(a['tag'])}" href="{e(a['url'])}" target="_blank" rel="noopener">
+                <span class="no">{i:02d}</span>
+                <h3>{e(a['title'])}</h3>{summary}
+                <span class="side"><span class="tag tag-line">{e(a['tag'])}</span><span class="date">{a['date']}</span></span>
               </a>"""
 
 
@@ -131,19 +138,14 @@ def render(articles=None):
     articles = articles if articles is not None else load()
     articles.sort(key=lambda a: a["date"], reverse=True)
     n = len(articles)
-    cards = []
-    for i, a in enumerate(articles, 1):
-        # 第一篇横向大卡；其余两列排布，单数时最后一篇占满一行
-        cls = "article-feature" if i == 1 else ("article-wide" if i == n and n % 2 == 0 else "")
-        cards.append(card(a, i, n, cls))
+    # 最新一篇做大卡，其余为紧凑列表
+    cards = [card(a, i) for i, a in enumerate(articles, 1)]
     doc = INDEX.read_text(encoding="utf-8")
     doc, hit = re.subn(r"(<!-- articles:start -->\n).*?(\n\s*<!-- articles:end -->)",
                        lambda m: m.group(1) + "\n".join(cards) + m.group(2), doc, flags=re.S)
     if not hit:
         sys.exit("index.html 里没找到 <!-- articles:start --> / <!-- articles:end --> 标记。")
-    doc = re.sub(r"· \d+ articles", f"· {n} articles", doc)
-    doc = re.sub(r"\d+ ARTICLES</span>", f"{n} ARTICLES</span>", doc)
-    doc = re.sub(r'<b>\d+</b><span class="mono">ARTICLES', f'<b>{n:02d}</b><span class="mono">ARTICLES', doc)
+    doc = re.sub(r'<b id="articleCount">\d+</b>', f'<b id="articleCount">{n}</b>', doc)
     INDEX.write_text(doc, encoding="utf-8")
 
 
