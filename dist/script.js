@@ -86,6 +86,18 @@
     });
   });
 
+  /* ---------- 复制微信号 ---------- */
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-copy]');
+    if (!btn) return;
+    const tip = $('[data-copied]', btn);
+    const before = tip.textContent;
+    try { await navigator.clipboard.writeText(btn.dataset.copy); tip.textContent = '已复制'; }
+    catch { tip.textContent = `微信号：${btn.dataset.copy}`; }
+    btn.classList.add('is-copied');
+    setTimeout(() => { tip.textContent = before; btn.classList.remove('is-copied'); }, 1800);
+  });
+
   /* ---------- 公众号二维码 ---------- */
   const qr = $('#qr');
   document.addEventListener('click', (e) => {
