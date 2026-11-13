@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#002fa7">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -90,7 +90,7 @@
             <div class="block">
               <h2 class="h2">最近在做</h2>
               <div class="now">
-                <a class="now-card" href="#projects"><span class="tag">项目</span><b>知序 KnowOrder</b><p>把企业知识变成可上线、可评测、可追溯的 AI 应用。</p></a>
+                <a class="now-card" href="#projects"><span class="tag">项目</span><b>Kapy.ai</b><p>一句话描述一款游戏，多个 AI 分工做出经过审查、能直接玩的版本。</p></a>
                 <a class="now-card" href="#writing"><span class="tag">写作</span><b>公众号「小渡ovo」</b><p>AI 热点解读与 AI 产品思考，写给刚开始关注 AI 的人。</p></a>
               </div>
             </div>
@@ -108,11 +108,67 @@
             <div class="filters" role="group" aria-label="按类别筛选项目" data-filter-group="projects">
               <button type="button" class="is-on" data-filter="all">全部</button>
               <button type="button" data-filter="ai">AI 应用</button>
-              <button type="button" data-filter="skill">Agent Skill</button>
+              <button type="button" data-filter="skill">Skill 与工具包</button>
               <button type="button" data-filter="web">网页作品</button>
             </div>
 
             <div class="projects" data-filter-items="projects">
+              <article class="project" data-tags="ai">
+                <div class="project-cover"><img src="assets/covers/kapy.jpg" alt="Kapy.ai 工作台：左侧 Agent 时间线，右侧像素工坊" loading="lazy" style="object-position: 78% center"></div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">AI 应用</span><span class="tag tag-line">多 Agent</span></p>
+                  <h3>Kapy.ai · 一句话做出能玩的游戏</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>让 AI 写游戏，常常写完就说“做好了”，实际根本跑不起来。</dd></div>
+                    <div><dt>怎么做的</dt><dd>策划拆任务、程序写代码、质检对照真实文件逐条核查，没通过就退回修复；做出的是 Web 或 Godot 4 工程。</dd></div>
+                    <div><dt>亮点</dt><dd>会打开构建版本真的去试玩、打分，合格才交付；干活时一只像素卡皮巴拉在旁边陪着。</dd></div>
+                  </dl>
+                  <details>
+                    <summary>查看技术栈</summary>
+                    <p class="chips"><span>Electron</span><span>React</span><span>TypeScript</span><span>Codex</span><span>Godot 4</span></p>
+                  </details>
+                  <p class="links"><a class="btn btn-sm btn-primary" href="https://nepheloovo.github.io/Kapy.ai/" target="_blank" rel="noopener">产品介绍页<svg class="ic"><use href="#i-arrow"/></svg></a>
+                    <a class="btn btn-sm" href="https://github.com/nepheloovo/Kapy.ai" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
+
+              <article class="project" data-tags="ai">
+                <div class="project-cover"><img src="assets/covers/wanxiang.jpg" alt="万象工场产品介绍页：一句话，万象成片" loading="lazy" style="object-position: center"></div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">AI 应用</span><span class="tag tag-line">AIGC</span></p>
+                  <h3>万象工场 · AIGC 内容生产平台</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>AI 一次性生成视频不可控，改一处就得全部重来。</dd></div>
+                    <div><dt>怎么做的</dt><dd>一句话需求拆成剧本 → 角色与场景 → 分镜 → 画面 → 视频 → 成片，每一步都能查看、修改、单独重新生成。</dd></div>
+                    <div><dt>亮点</dt><dd>一个“场景包”就是一个行业产品：内置短片、电商广告、漫剧、旅游宣传片、商品海报，新增场景通常不用写代码。</dd></div>
+                  </dl>
+                  <details>
+                    <summary>查看技术栈</summary>
+                    <p class="chips"><span>Python</span><span>Node.js</span><span>多阶段 Agent</span><span>场景包</span></p>
+                  </details>
+                  <p class="links"><a class="btn btn-sm btn-primary" href="https://nepheloovo.github.io/wanxiang-studio/" target="_blank" rel="noopener">产品介绍页<svg class="ic"><use href="#i-arrow"/></svg></a>
+                    <a class="btn btn-sm" href="https://github.com/nepheloovo/wanxiang-studio" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
+
+              <article class="project" data-tags="ai">
+                <div class="project-cover"><img src="assets/covers/agent-workshop.jpg" alt="Agent 工坊网页界面：产品定位、待确认问题和需求拆解" loading="lazy"></div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">AI 应用</span><span class="tag tag-line">Agent</span></p>
+                  <h3>Agent 工坊 · 从点子到可验收的 Agent 骨架</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>有了 Agent 点子，直接让 AI 写代码，常常做出来不是自己想要的。</dd></div>
+                    <div><dt>怎么做的</dt><dd>先把一句话点子推导成可确认的 PRD 和架构方案，交给你的 AI 编程工具写骨架，再对照 PRD 验收。</dd></div>
+                    <div><dt>亮点</dt><dd>把“哪里还没想清楚”列成待确认问题；有命令行和本地网页两种用法。</dd></div>
+                  </dl>
+                  <details>
+                    <summary>查看技术栈</summary>
+                    <p class="chips"><span>Python</span><span>本地网页界面</span></p>
+                  </details>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/agent-workshop" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
+
               <article class="project" data-tags="ai">
                 <div class="project-cover"><img src="assets/covers/knoworder.jpg" alt="知序 KnowOrder 工作台界面" loading="lazy"></div>
                 <div class="project-body">
@@ -128,7 +184,7 @@
                     <p class="chips"><span>FastAPI</span><span>LangChain</span><span>React</span><span>pgvector</span><span>Celery</span></p>
                     <p class="credit">基于 chusimin/zhishu-rag-platform 经授权二次开发</p>
                   </details>
-                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/zhishu-rag-platform" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/knoworder" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
                 </div>
               </article>
 
@@ -150,6 +206,27 @@
                     <p class="chips"><span>FastAPI</span><span>SSE 流式输出</span><span>ffmpeg</span><span>DeepSeek</span><span>qwen-vl</span></p>
                   </details>
                   <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/douyin-video-diagnose" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
+
+              <article class="project" data-tags="skill">
+                <div class="project-cover cover-gen" aria-hidden="true">
+                  <span class="mono">想法 → PRD → 代码 → 上线</span>
+                  <b>从想法<br>到上线</b>
+                </div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">工具包</span></p>
+                  <h3>AI 产品从想法到上线 · 开发工具包</h3>
+                  <dl class="facts">
+                    <div><dt>解决什么</dt><dd>有产品想法却不会写代码，教程太碎，也不知道 AI 有没有糊弄自己。</dd></div>
+                    <div><dt>怎么做的</dt><dd>一张规则卡加三份技术手册，让编码 AI 当技术合伙人，按阶段写代码、做界面、部署上线。</dd></div>
+                    <div><dt>亮点</dt><dd>每个阶段有闸门和证据包，自己就能核对；花钱先报价，密钥不进代码。</dd></div>
+                  </dl>
+                  <details>
+                    <summary>查看技术栈</summary>
+                    <p class="chips"><span>Claude Code</span><span>Codex</span><span>腾讯云开发</span></p>
+                  </details>
+                  <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/idea-to-launch-kit" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
                 </div>
               </article>
 
@@ -186,6 +263,20 @@
                     <div><dt>亮点</dt><dd>文末附主张与来源对照表，用懂行朋友聊天的口吻写。</dd></div>
                   </dl>
                   <p class="links"><a class="btn btn-sm" href="https://github.com/nepheloovo/ai-hotspot-wechat-skill" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
+                </div>
+              </article>
+
+              <article class="project" data-tags="web">
+                <div class="project-cover"><img src="assets/covers/interview-bank.jpg" alt="AI 产品经理面试题库首页" loading="lazy"></div>
+                <div class="project-body">
+                  <p class="meta"><span class="tag">网页作品</span><span class="tag tag-line">备考资料</span></p>
+                  <h3>AI 产品经理面试题库</h3>
+                  <dl class="facts">
+                    <div><dt>是什么</dt><dd>汇总真实 AI 产品经理面试复盘，去重整理成 175 道高频题。</dd></div>
+                    <div><dt>怎么用</dt><dd>每道题标了被问频次、面试官考察点和答题框架，可按维度、按公司查。</dd></div>
+                  </dl>
+                  <p class="links"><a class="btn btn-sm btn-primary" href="https://nepheloovo.github.io/ai-pm-interview-bank/" target="_blank" rel="noopener">在线浏览<svg class="ic"><use href="#i-arrow"/></svg></a>
+                    <a class="btn btn-sm" href="https://github.com/nepheloovo/ai-pm-interview-bank" target="_blank" rel="noopener"><svg class="ic"><use href="#i-code"/></svg>看源码</a></p>
                 </div>
               </article>
 
@@ -349,6 +440,6 @@
     <p class="qr-sub">微信扫一扫关注，或在微信里搜索「小渡ovo」</p>
   </dialog>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
